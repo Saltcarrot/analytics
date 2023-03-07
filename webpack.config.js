@@ -2,6 +2,7 @@ const path = require('path')
 const HTMLWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const CssMinimizerWebpackPlugin = require('css-minimizer-webpack-plugin')
+const TerserPlugin = require('terser-webpack-plugin')
 
 let mode = 'development'
 if (process.env.NODE_ENV === 'production') {
@@ -85,7 +86,7 @@ module.exports = {
     extensions: ['.tsx', '.ts', '.js'],
   },
   optimization: {
-    minimizer: [new CssMinimizerWebpackPlugin()],
+    minimizer: [new CssMinimizerWebpackPlugin(), new TerserPlugin()],
     minimize: mode === 'production',
   },
 }
